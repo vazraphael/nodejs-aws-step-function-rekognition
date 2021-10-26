@@ -1,0 +1,18 @@
+{
+  "name": "rekognition-batch-analyzes-nodejs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "author": "Raphael Vaz",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "^2.851.0",
+    "axios": "^0.21.1",
+    "dotenv": "^8.2.0",
+    "serverless-mysql": "^1.5.4",
+    "sharp": "^0.28.3"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0"
+  }
+}
