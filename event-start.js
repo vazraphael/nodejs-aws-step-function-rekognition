@@ -1,11 +1,11 @@
-if (!process.env.MY_AWS_ACCESS_KEY_ID) {
-    require("dotenv/config");
-}
-
-const Image = require("./api/models/Image");
 
 exports.handler = async (event) => {
-    const image = new Image();
-    let pendents = await image.getPendents();
-    return pendents.length ? "start" : "stop";
+    /**
+     * Example list of images to analyze in a S3 bucket.
+     * Here you can get a list from a database
+     * Example: const images = await db.query(`SELECT * FROM images WHERE analyzed = 0`);
+     */
+    const images = require("./images");
+
+    return images.length ? "start" : "stop";
 };

@@ -1,16 +1,20 @@
-if (!process.env.MY_AWS_ACCESS_KEY_ID) {
+if (!process.env.REKOGNITION_MODEL_ARN) {
     require("dotenv/config");
 }
-const TrainingController = require("./api/controllers/TrainingController");
-const RekognitionTraining = require("./api/models/RekognitionTraining");
-
+const AWS = require("aws-sdk");
+const Rekognition = new AWS.Rekognition({
+    accessKeyId: process.env.MY_AWS_ACCESS_KEY_ID,
+    secretAccessKey: process.env.MY_AWS_SECRET_ACCESS_KEY,
+    region: process.env.AWS_DEFAULT_REGION,
+});
 exports.handler = async (event) => {
-    // para todos os treinamentos
-    const rekognitionTraining = new RekognitionTraining();
-    const trainingController = new TrainingController();
-    const treinamentos = await rekognitionTraining.list();
-    for (let index = 0; index < treinamentos.length; index++) {
-        const treinamento = treinamentos[index];
-        await trainingController.stop(treinamento.id);
+    try {
+        let params = {
+            ProjectVersionArn: process.env.REKOGNITION_MODEL_ARN
+        };
+        await Rekognition.stopProjectVersion(params).promise();
+        return;
+    } catch (error) {
+        throw error;
     }
 };
