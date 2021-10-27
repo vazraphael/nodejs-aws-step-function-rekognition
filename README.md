@@ -55,10 +55,12 @@ You will have to create 4 function in Lambda with the name ```event-start```, ``
 Go to Lambda service, click on Create Function, select Author from scratch.
 
 Follow the image below
+
 ![](https://raw.githubusercontent.com/vazraphael/nodejs-aws-step-function-rekognition/master/doc/lambda.png)
 
 Now, for every function you created, you have to change the Handler to the same name as the function you created concatenated with .handler
 Example:
+
 ![](https://raw.githubusercontent.com/vazraphael/nodejs-aws-step-function-rekognition/master/doc/lambda2.png)
 
 ### 4º step
@@ -224,11 +226,16 @@ Replace the {REGION} and {ACCOUNT_NUMBER} in the JSON below, or replace with the
 }
 ```
 
-Go to Step Functions, click on Create state machine, select <strong>Write your workflow in code</strong>, paste the json above with your replacements in Definition.
+Go to Step Functions, click on Create state machine, select <strong>Write your workflow in code</strong>, paste the json above with your replacements in Definition, click on Next, insert State machine name and then click on Create state machine.
 
 ![](https://raw.githubusercontent.com/vazraphael/nodejs-aws-step-function-rekognition/master/doc/step-function.png)
 
 Access your created state machines and click Start execution.
+
+## Notes
+
+- Remember to Stop the model after the execution is done, because you're charged if the model is RUNNING.
+- You can create a event on Amazon EventBridge to trigger the Step Function in a determined time.
 
 That's it, have fun!
 
